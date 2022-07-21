@@ -1,0 +1,5 @@
+<div class="quickLinks">
+    <div *ngFor="let quickLink of quickLinks">
+        <app-quick-link [headline]="quickLink.headline" [text]="quickLink.text" [url]="quickLink.url" [newTab]="quickLink.newTab"></app-quick-link>
+    </div>
+</div>

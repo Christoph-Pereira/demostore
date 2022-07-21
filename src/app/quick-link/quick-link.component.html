@@ -1,0 +1,15 @@
+<div class="quickLinkDiv">
+
+    <h1>{{headline}}</h1>
+
+    <div *ngIf="url?.indexOf('http') === 0; else elseBlock">
+        <a href="{{url}}" [target]="newTab ? '_blank' : '_self'" rel="noopener noreferrer">
+            {{text}}
+        </a>
+    </div>
+    <ng-template #elseBlock>
+        <a routerLink="{{url}}" (click)="changeHeaderBackground()">
+            {{text}}
+        </a>
+    </ng-template>
+</div>

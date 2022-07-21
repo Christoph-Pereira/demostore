@@ -37,6 +37,11 @@ import { FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { MatTabsModule } from '@angular/material/tabs';
 import { TextHighlightPipe } from 'src/shared/pipes/text-highlight.pipe';
+import { BannerComponent } from './banner/banner.component';
+import { QuickLinksComponent } from './quick-links/quick-links.component';
+import { ProductLinksComponent } from './product-links/product-links.component';
+import { QuickLinkComponent } from './quick-link/quick-link.component';
+import { ProductLinkComponent } from './product-link/product-link.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +56,12 @@ import { TextHighlightPipe } from 'src/shared/pipes/text-highlight.pipe';
     SortComponent,
     CardComponent,
     SearchResultComponent,
-    TextHighlightPipe
+    TextHighlightPipe,
+    BannerComponent,
+    QuickLinksComponent,
+    ProductLinksComponent,
+    QuickLinkComponent,
+    ProductLinkComponent
   ],
   imports: [
     BrowserModule,

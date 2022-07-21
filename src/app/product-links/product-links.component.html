@@ -1,0 +1,8 @@
+<div class="productLinksDiv">
+    <h1>Showcased Solutions</h1>
+    <div class ="productLinks">
+        <div *ngFor="let productLink of productLinks">
+            <app-product-link [text]="productLink.text" [image]="productLink.image" [url]="productLink.url"></app-product-link>
+        </div>
+    </div>
+</div>

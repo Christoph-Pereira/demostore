@@ -1,0 +1,17 @@
+.productLinksDiv {
+    align-items: center;
+    color: white;
+    padding: 2rem;
+
+    h1 {
+        text-align: center;
+        color: black;
+        margin: 2rem;
+        font-size: 2rem;
+
+    }
+    .productLinks {
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+}

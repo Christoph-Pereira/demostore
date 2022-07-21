@@ -1,0 +1,19 @@
+a {
+    text-decoration: none;
+}
+.productLinkDiv {
+    height: 450px;
+    width: 685px;
+    margin: auto;
+    transition: all .2s ease-in-out;
+
+    .productLinkText {
+        font-size: 2rem;
+        padding: 2rem;
+        color: white;
+    }
+}
+
+.productLinkDiv:hover {
+    transform: scale(1.1);
+}

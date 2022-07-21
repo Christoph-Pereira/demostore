@@ -10,9 +10,10 @@ import {
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { IDetailedProduct } from '../Interface/detailedproduct';
-import { ReplaySubject, takeUntil } from 'rxjs';
+import { of, ReplaySubject, takeUntil } from 'rxjs';
 import { QueryService } from '../api/query.service';
 import { FilterService } from '../services/filter.services';
+import { HeaderColorService } from '../services/header-color.service';
 
 @Component({
   selector: 'app-header',
@@ -48,7 +49,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private router: Router,
     private productService: ProductService,
     private queryService: QueryService,
-    private filterService: FilterService
+    private filterService: FilterService,
+    private headerColor: HeaderColorService
   ) {}
 
   private _searchDetails: string = '';
@@ -86,8 +88,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
       });
   }
 
+  changeHeaderColor(color: string) {
+      console.log(color);
+      this.currentColor = color;
+  }
+
   ngOnInit(): void {
     this.subToproduct();
+
+    this.headerColor.colorSubject$.subscribe(
+      color => this.changeHeaderColor(color)
+    );
   }
 
   ngOnDestroy(): void {
