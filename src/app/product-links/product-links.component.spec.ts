@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MockComponent } from 'ng-mocks';
+import { ProductLinkComponent } from '../product-link/product-link.component';
 
 import { ProductLinksComponent } from './product-links.component';
 
@@ -8,7 +10,7 @@ describe('ProductLinksComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProductLinksComponent ]
+      declarations: [ ProductLinksComponent, MockComponent(ProductLinkComponent) ]
     })
     .compileComponents();
   });

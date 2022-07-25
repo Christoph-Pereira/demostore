@@ -22,4 +22,13 @@ describe('BannerComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should match snapshot', () => {
+    expect(fixture).toMatchSnapshot();
+  });
+
+  it('should contain div with background image', () => {
+    const banner = fixture.nativeElement.querySelector('.banner');
+    expect(banner).toBeTruthy();
+  });
 });

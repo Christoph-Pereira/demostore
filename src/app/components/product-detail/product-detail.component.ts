@@ -14,8 +14,6 @@ import { ConfiguratorComponent } from '../../configurator/configurator.component
 })
 export class ProductDetailComponent implements OnInit, OnDestroy {
 
-  productId: number | undefined;
-
   product!: IDetailedProduct | undefined;
 
   destroy$ = new ReplaySubject<void>(1);
@@ -32,14 +30,14 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
       disableClose: true,
       width: '70%',
       data: {
-        id: this.productId,
+        id: this.product?.id,
         product: this.product,
         config: param
       }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.router.navigateByUrl(`product/${this.productId}`);
+      this.router.navigateByUrl(`product/${this.product?.id}`);
     });
   }
 
@@ -65,9 +63,8 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
       .getProductDetails(this.route.snapshot.paramMap.get('id') || '')
       .pipe(takeUntil(this.destroy$))
       .subscribe({
-        next: (data) => {
-          this.product = data;
-          this.productId = data?.id;
+        next: (product) => {
+          this.product = product;
         },
       });
   }

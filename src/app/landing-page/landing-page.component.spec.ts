@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ProductLinkComponent } from '../product-link/product-link.component';
 
 import { LandingPageComponent } from './landing-page.component';
+import { BannerComponent } from '../banner/banner.component';
+import { QuickLinksComponent } from '../quick-links/quick-links.component';
+import { ProductLinksComponent } from '../product-links/product-links.component';
+import { MockComponents } from 'ng-mocks';
 
 describe('LandingPageComponent', () => {
   let component: LandingPageComponent;
@@ -8,7 +13,7 @@ describe('LandingPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LandingPageComponent ]
+      declarations: [ LandingPageComponent, MockComponents (BannerComponent, QuickLinksComponent, ProductLinksComponent) ]
     })
     .compileComponents();
   });
@@ -22,4 +27,9 @@ describe('LandingPageComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should match snapshot', () => {
+    expect(fixture).toMatchSnapshot();
+  });
 });
+

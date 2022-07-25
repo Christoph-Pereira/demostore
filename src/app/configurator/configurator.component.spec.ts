@@ -3,9 +3,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatNativeDateModule } from '@angular/material/core';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDatepicker, MatDatepickerModule, MatDatepickerToggle } from '@angular/material/datepicker';
+import { MatDialogContent, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatFormField, MatHint, MatLabel } from '@angular/material/form-field';
 import { ActivatedRoute } from '@angular/router';
+import { MockComponents } from 'ng-mocks';
 import { ConfiguratorComponent } from './configurator.component';
 
 describe('ConfiguratorComponent', () => {
@@ -19,13 +21,16 @@ describe('ConfiguratorComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
-        MatDialogModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-        MatCheckboxModule,
         ReactiveFormsModule
       ],
-      declarations: [ConfiguratorComponent],
+      declarations: [ConfiguratorComponent, 
+        MockComponents (
+          MatFormField,
+          MatDialogContent,
+          MatLabel,
+          MatHint,
+          MatDatepicker,
+          MatDatepickerToggle ) ],
       providers: [
         {provide: ActivatedRoute, useValue: mockedActivatedRoute},
         {

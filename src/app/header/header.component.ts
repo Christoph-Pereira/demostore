@@ -10,7 +10,7 @@ import {
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { IDetailedProduct } from '../Interface/detailedproduct';
-import { of, ReplaySubject, takeUntil } from 'rxjs';
+import { of, ReplaySubject, Subscription, takeUntil } from 'rxjs';
 import { QueryService } from '../api/query.service';
 import { FilterService } from '../services/filter.services';
 import { HeaderColorService } from '../services/header-color.service';
@@ -36,6 +36,7 @@ import { HeaderColorService } from '../services/header-color.service';
 })
 
 export class HeaderComponent implements OnInit, OnDestroy {
+  public headerColorSubscription: Subscription = Subscription.EMPTY;
   isHidden: boolean = false;
   currentColor: string = 'primary';
   mainColor: string = 'primary';
@@ -96,13 +97,23 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subToproduct();
 
-    this.headerColor.colorSubject$.subscribe(
+    this.headerColorSubscription.add(this.headerColor.getColorObservable()
+    .subscribe(
+      color => this.changeHeaderColor(color)
+    ));
+
+    this.headerColor.getColorObservable()
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(
       color => this.changeHeaderColor(color)
     );
+
   }
 
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+
+    this.headerColorSubscription.unsubscribe();
   }
 }

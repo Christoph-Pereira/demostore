@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { QuickLinksComponent } from './quick-links.component';
+import { QuickLinkComponent } from '../quick-link/quick-link.component';
+import { MockComponent } from 'ng-mocks';
 
 describe('QuickLinksComponent', () => {
   let component: QuickLinksComponent;
@@ -8,7 +10,7 @@ describe('QuickLinksComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ QuickLinksComponent ]
+      declarations: [ QuickLinksComponent, MockComponent(QuickLinkComponent) ]
     })
     .compileComponents();
   });

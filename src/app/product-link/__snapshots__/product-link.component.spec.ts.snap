@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductLinkComponent should render with image 1`] = `
+<app-product-link
+  __ngContext__={[Function LRootView]}
+  image={[Function String]}
+  text={[Function String]}
+  url={[Function String]}
+>
+  <a
+    href="/product/1"
+  >
+    <div
+      class="productLinkDiv"
+      style="background-image: url(../../assets/images/Centrical-background-2.png);"
+    >
+      <p
+        class="productLinkText"
+      >
+         Advanced Gamification 
+      </p>
+    </div>
+  </a>
+</app-product-link>
+`;

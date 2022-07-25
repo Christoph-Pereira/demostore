@@ -8,5 +8,14 @@ export class HeaderColorService {
 
   constructor() { }
 
-  public colorSubject$ = new Subject<string>();
+  private colorSubject$ = new Subject<string>();
+  private colorObservable$ = this.colorSubject$.asObservable();
+
+  public setColorSubject(color: string) {
+    this.colorSubject$.next(color);
+  }
+
+  public getColorObservable() {
+    return this.colorObservable$;
+  }
 }

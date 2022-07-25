@@ -17,7 +17,7 @@ export class QuickLinkComponent {
    }
 
   changeHeaderBackground() {
-    this.headerColor.colorSubject$.next("black");
+    this.headerColor.setColorSubject("black");
   }
 
 }

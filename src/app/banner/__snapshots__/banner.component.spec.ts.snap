@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BannerComponent should match snapshot 1`] = `
+<app-banner
+  __ngContext__={[Function LRootView]}
+>
+  <div
+    class="banner"
+  >
+    <p
+      class="bannerText"
+    >
+       This is so beautiful I am going to blame someone else 
+    </p>
+  </div>
+</app-banner>
+`;
