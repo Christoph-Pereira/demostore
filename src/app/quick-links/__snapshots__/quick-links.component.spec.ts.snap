@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`QuickLinksComponent should match snapshot 1`] = `
+<app-quick-links
+  __ngContext__={[Function LRootView]}
+  quickLinks={[Function Array]}
+>
+  <div
+    class="quickLinks"
+  >
+    <div>
+      <app-quick-link />
+    </div>
+    <div>
+      <app-quick-link />
+    </div>
+    <div>
+      <app-quick-link />
+    </div>
+  </div>
+</app-quick-links>
+`;

@@ -1,46 +1,59 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatDatepicker, MatDatepickerModule, MatDatepickerToggle } from '@angular/material/datepicker';
-import { MatDialogContent, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatFormField, MatHint, MatLabel } from '@angular/material/form-field';
-import { ActivatedRoute } from '@angular/router';
-import { MockComponents } from 'ng-mocks';
-import { ConfiguratorComponent } from './configurator.component';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatDatepicker, MatDatepickerActions, MatDatepickerToggle} from '@angular/material/datepicker';
+import {MAT_DIALOG_DATA, MatDialogActions, MatDialogContent, MatDialogRef} from '@angular/material/dialog';
+import {MatFormField, MatHint, MatLabel} from '@angular/material/form-field';
+import {ActivatedRoute} from '@angular/router';
+import {MockComponents, MockDirectives} from 'ng-mocks';
+import {ConfiguratorComponent} from './configurator.component';
+import {MatCheckbox} from '@angular/material/checkbox';
+import {MatInput} from '@angular/material/input';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
 
 describe('ConfiguratorComponent', () => {
   let component: ConfiguratorComponent;
   let fixture: ComponentFixture<ConfiguratorComponent>;
-
 
   const mockedActivatedRoute: any = {snapshot: {paramMap: {get: jest.fn()}}};
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
+        FormsModule,
         HttpClientTestingModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
       ],
-      declarations: [ConfiguratorComponent, 
-        MockComponents (
+      declarations: [
+        ConfiguratorComponent,
+        MockComponents(
+          MatCheckbox,
           MatFormField,
+          MatDatepicker,
+          MatDatepickerActions,
+          MatDatepickerToggle,
+        ),
+        ...MockDirectives(
+          MatDialogActions,
           MatDialogContent,
           MatLabel,
           MatHint,
-          MatDatepicker,
-          MatDatepickerToggle ) ],
+          MatInput,
+        )
+      ],
       providers: [
         {provide: ActivatedRoute, useValue: mockedActivatedRoute},
         {
           provide: MatDialogRef,
           useValue: []
-           },
-          {
+        },
+        {
           provide: MAT_DIALOG_DATA,
           useValue: {}
         },
+      ],
+      schemas: [
+        NO_ERRORS_SCHEMA
       ]
     }).compileComponents();
 

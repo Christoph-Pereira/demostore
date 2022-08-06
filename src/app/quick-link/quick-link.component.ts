@@ -8,9 +8,9 @@ import { HeaderColorService } from '../services/header-color.service';
 })
 export class QuickLinkComponent {
 
-  @Input() public headline: String | undefined;
-  @Input() public text: String | undefined;
-  @Input() public url: String | undefined;
+  @Input() public headline: string | undefined;
+  @Input() public text: string | undefined;
+  @Input() public url: string | undefined;
   @Input() public newTab: boolean | undefined;
 
   constructor(private headerColor: HeaderColorService) {

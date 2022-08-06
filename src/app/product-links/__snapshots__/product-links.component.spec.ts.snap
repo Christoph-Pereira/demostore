@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductLinksComponent should match snapshot 1`] = `
+<app-product-links
+  __ngContext__={[Function LRootView]}
+  productLinks={[Function Array]}
+  productLinksService={[Function Object]}
+>
+  <div
+    class="productLinksDiv"
+  >
+    <h1>
+      Showcased Solutions
+    </h1>
+    <div
+      class="productLinks"
+    >
+      <div>
+        <app-product-link />
+      </div>
+      <div>
+        <app-product-link />
+      </div>
+    </div>
+  </div>
+</app-product-links>
+`;

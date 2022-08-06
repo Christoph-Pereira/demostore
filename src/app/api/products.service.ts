@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, tap, throwError, map } from 'rxjs';
 import { IProduct } from '../Interface/products';
 import { CountryService } from '../services/country.service';
 
@@ -32,6 +32,27 @@ export class ProductService {
         tap((data) => this.setProductsSubject(data)),
         catchError(this.handleError)
       );
+  }
+
+  getRandomInt(max: number) {
+    return Math.floor(Math.random() * max);
+  }
+
+  getRandomProductTitle(): Observable<string> {
+    const rnd = this.getRandomInt(1000);
+    return this.getProductTitle(rnd)
+    .pipe(map(( productTitle ) => {
+      return "attribute title of a random product : " + productTitle;
+    }));
+  }
+  getProductTitle(productId: number): Observable<string> {
+    return this.getProducts()
+    .pipe(
+      map(( products ) => {
+        return products[productId];
+      }),map(( product ) => {
+        return product.title;
+      }));
   }
 
   getProductsByQuery(queryParams: string): Observable<any> {

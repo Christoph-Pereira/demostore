@@ -1,5 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ProductService } from '../api/products.service';
+import { ProductLinksService } from './product-links.service';
+import { first, Subscription } from 'rxjs';
 
+interface productLink {
+  text: string,
+  image: string,
+  url: string
+}
 @Component({
   selector: 'app-product-links',
   templateUrl: './product-links.component.html',
@@ -7,23 +15,21 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ProductLinksComponent implements OnInit {
 
-  public productLinks: any[] | undefined;
+  public productLinks: productLink[] | undefined;
+  public randomProductTitleText = "";
+  private randomProductTitleSubscription: Subscription = new Subscription;
 
-  constructor() { }
+  constructor(private productLinksService: ProductLinksService, private productService: ProductService) { }
 
   ngOnInit(): void {
-    this.productLinks = [
-      {
-        "text": "Advanced Gamification",
-        "image": "../../assets/images/Centrical-background-2.png",
-        "url": "/product/1"
-      },
-      {
-        "text": "Integrated Occupational Health",
-        "image": "../../assets/images/Sodales-background-1-.png",
-        "url": "/product/2"
-      }
-    ]
+    this.productLinks = this.productLinksService.getProductLinks();
+
+    this.randomProductTitleSubscription = this.productService.getRandomProductTitle()
+    .subscribe(randomProductTitleText => this.randomProductTitleText = randomProductTitleText);
+  }
+
+  ngOnDestroy(): void {
+    this.randomProductTitleSubscription.unsubscribe();
   }
 
 }

@@ -38,10 +38,8 @@ import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { MatTabsModule } from '@angular/material/tabs';
 import { TextHighlightPipe } from 'src/shared/pipes/text-highlight.pipe';
 import { BannerComponent } from './banner/banner.component';
-import { QuickLinksComponent } from './quick-links/quick-links.component';
-import { ProductLinksComponent } from './product-links/product-links.component';
-import { QuickLinkComponent } from './quick-link/quick-link.component';
-import { ProductLinkComponent } from './product-link/product-link.component';
+import { QuickLinksModule } from './quick-links/quick-links.module';
+import { ProductLinksModule } from './product-links/product-links.module';
 
 @NgModule({
   declarations: [
@@ -57,11 +55,7 @@ import { ProductLinkComponent } from './product-link/product-link.component';
     CardComponent,
     SearchResultComponent,
     TextHighlightPipe,
-    BannerComponent,
-    QuickLinksComponent,
-    ProductLinksComponent,
-    QuickLinkComponent,
-    ProductLinkComponent
+    BannerComponent
   ],
   imports: [
     BrowserModule,
@@ -93,6 +87,8 @@ import { ProductLinkComponent } from './product-link/product-link.component';
     FormlyBootstrapModule,
     FormlyModule,
     MatTabsModule,
+    QuickLinksModule,
+    ProductLinksModule,
     RouterModule.forRoot([
       { path: '', component: LandingPageComponent },
       { path: 'search', component: SearchComponent },

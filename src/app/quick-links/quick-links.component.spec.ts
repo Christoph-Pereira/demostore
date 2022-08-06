@@ -24,4 +24,23 @@ describe('QuickLinksComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should contain quickLinks', () => {
+    expect(component.quickLinks).toBeTruthy();
+  });
+
+  it('should contain quicklinkslink01', () => {
+    const quickLinks = component.quickLinks;
+    const exampleQuickLink = {
+      "headline": "QuickLinksLink01",
+      "text": "Example QuickLink >",
+      "url": "/configurator",
+      "newTab": false
+    }
+    expect(quickLinks).toContainEqual(exampleQuickLink);
+  });
+  
+  it('should match snapshot', () => {
+    expect(fixture).toMatchSnapshot();
+  });
 });

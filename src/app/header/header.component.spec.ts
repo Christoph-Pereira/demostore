@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { HeaderComponent } from './header.component';
 import { FormsModule } from '@angular/forms';
 import { CountrySelectorComponent } from '../components/country-selector/country-selector.component';
@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { of } from 'rxjs';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductService } from '../api/product.service';
+import { HeaderColorService } from '../services/header-color.service';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -20,6 +21,11 @@ describe('HeaderComponent', () => {
   };
   let productService = {
     product$: of({}),
+  };
+  const colorObservable = of("black");
+  let mockedHeaderColorService: any = {
+    getColorObservable: jest.fn().mockReturnValue(
+      colorObservable)
   };
 
   beforeEach(async () => {
@@ -37,6 +43,7 @@ describe('HeaderComponent', () => {
       providers: [
         { provide: Router, useValue: router },
         { provide: ProductService, useValue: productService },
+        { provide: HeaderColorService, useValue: mockedHeaderColorService }
       ],
     }).compileComponents();
   });
@@ -89,4 +96,14 @@ describe('HeaderComponent', () => {
     component.subToproduct();
     expect(component.currentLocalItem).toEqual(undefined);
   });
+
+  it('should change header color', fakeAsync(() => {
+    component.ngOnInit(); //wird auch autmoatisch 1x ausgeführt (bei initialisierung)
+    tick(1000);
+    expect(component.currentColor).toEqual("black");
+    /* mockedHeaderColorService.getColorObservable()
+    .subscribe(
+      (color: string) => expect(component.currentColor).toEqual(color)
+    ); */
+  }));
 });
